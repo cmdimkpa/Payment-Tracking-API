@@ -47,7 +47,7 @@ def create_account():
 	# make new API key
 	api_key = new_api_key()
 	# send API key to APIKeyStore
-	SendData("APIKeyStore",[{"keys":api_key}])
+	send_data("APIKeyStore",[{"keys":api_key}])
 	# return success message
 	return {'info':'Account created successfully.','api_key':api_key},200
 
@@ -148,7 +148,7 @@ def api_push_receipt(receipt):
 				for key in stamp:
 					receipt[key] = stamp[key]
 				# send receipt to PaymentDataStore
-				SendData("PaymentDataStore",[receipt])
+				send_data("PaymentDataStore",[receipt])
 				return SendResponse("transaction successful.",200)
 		else:
 			return SendResponse("error: unrecognized pay fields. Send only 'key','to','from' and 'amount'",400)
